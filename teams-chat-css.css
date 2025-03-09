@@ -61,6 +61,7 @@ body {
     flex-direction: column;
     flex: 1;
     overflow: hidden;
+    transition: flex 0.3s ease-in-out;
 }
 
 /* Left Sidebar - Chat History */
@@ -84,6 +85,30 @@ body {
     border-radius: 4px;
     background-color: #444;
     color: #fff;
+}
+
+.display-mode-toggle {
+    display: flex;
+    margin-top: 10px;
+    background-color: #444;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 6px 12px;
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.mode-btn.active {
+    background-color: #6264a7;
+    color: white;
 }
 
 .chat-list {
@@ -121,6 +146,11 @@ body {
     flex-shrink: 0;
 }
 
+.issue-avatar {
+    font-size: 0.7rem;
+    background-color: #2b5797;
+}
+
 .chat-info {
     flex: 1;
     min-width: 0;
@@ -139,6 +169,21 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.tags-mode {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background-color: #444;
+    border-radius: 10px;
+    color: #fff;
+    white-space: nowrap;
 }
 
 .chat-time {
@@ -167,6 +212,12 @@ body {
 
 .chat-title {
     margin-left: 10px;
+}
+
+.issue-tags {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
 }
 
 .status-text {
@@ -418,21 +469,54 @@ body {
     background-color: #555;
 }
 
-/* Right Sidebar - Files and Index */
+/* Right Sidebar - Files and Trace */
 .files-sidebar {
     display: flex;
     flex-direction: column;
 }
 
-.files-section, .index-section {
+.files-section, .trace-section {
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: flex 0.3s ease-in-out;
 }
 
 .files-section {
     border-bottom: 1px solid #444;
+}
+
+.files-section.minimized {
+    flex: 0.3;
+}
+
+.trace-section.minimized {
+    flex: 0.3;
+}
+
+.source-selector, .trace-type-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.source-btn, .trace-type-btn {
+    padding: 4px 8px;
+    background-color: #444;
+    color: #aaa;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.source-btn.active, .trace-type-btn.active {
+    background-color: #6264a7;
+    color: white;
 }
 
 .upload-btn {
@@ -450,21 +534,21 @@ body {
     background-color: #7476b5;
 }
 
-.files-list, .index-list {
+.files-list, .trace-list {
     overflow-y: auto;
     flex: 1;
 }
 
-.file-item, .index-item {
+.file-item, .trace-item {
     padding: 10px 15px;
     border-bottom: 1px solid #383838;
 }
 
-.file-item:hover, .index-item:hover {
+.file-item:hover, .trace-item:hover {
     background-color: #383838;
 }
 
-.index-item.active {
+.trace-item.active {
     background-color: #444;
 }
 
@@ -488,19 +572,19 @@ body {
     font-size: 1.2rem;
 }
 
-.form-check-label i.bi-file-earmark-word {
+.form-check-label i.bi-file-earmark-text {
     color: #4a86e8;
 }
 
-.form-check-label i.bi-file-earmark-pdf {
-    color: #e8574a;
+.form-check-label i.bi-file-earmark-spreadsheet {
+    color: #00a650;
 }
 
-.form-check-label i.bi-file-earmark-image {
+.form-check-label i.bi-cloud {
     color: #4ae8b0;
 }
 
-.file-name, .index-name {
+.file-name, .trace-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teams-like Chat</title>
+    <title>Issue Agent Chat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="teams-chat-css.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-dark text-light">
     <div class="container-fluid h-100">
@@ -14,34 +14,53 @@
             <!-- Left sidebar - Chat history -->
             <div class="col-3 chat-history-sidebar">
                 <div class="sidebar-header">
-                    <h5>聊天記錄</h5>
+                    <h5>對話紀錄</h5>
                     <div class="search-container">
                         <i class="bi bi-search"></i>
                         <input type="text" class="search-input" placeholder="搜尋">
                     </div>
+                    <div class="display-mode-toggle">
+                        <button class="mode-btn active" data-mode="summary">摘要模式</button>
+                        <button class="mode-btn" data-mode="tags">標籤模式</button>
+                    </div>
                 </div>
                 <div class="chat-list">
                     <div class="chat-item active">
-                        <div class="avatar">JD</div>
+                        <div class="avatar issue-avatar">IS-1234</div>
                         <div class="chat-info">
-                            <div class="chat-name">John Doe</div>
-                            <div class="chat-preview">最近的訊息預覽...</div>
+                            <div class="chat-name">記憶體洩漏問題</div>
+                            <div class="chat-preview summary-mode">應用程式在長時間運行後出現記憶體洩漏問題...</div>
+                            <div class="chat-preview tags-mode" style="display: none;">
+                                <span class="tag">記憶體</span>
+                                <span class="tag">性能</span>
+                                <span class="tag">緊急</span>
+                            </div>
                         </div>
                         <div class="chat-time">12:30</div>
                     </div>
                     <div class="chat-item">
-                        <div class="avatar">JS</div>
+                        <div class="avatar issue-avatar">IS-1235</div>
                         <div class="chat-info">
-                            <div class="chat-name">Jane Smith</div>
-                            <div class="chat-preview">你好，我們下午有會議嗎？</div>
+                            <div class="chat-name">API 回應緩慢</div>
+                            <div class="chat-preview summary-mode">用戶報告API在高流量時回應時間超過預期...</div>
+                            <div class="chat-preview tags-mode" style="display: none;">
+                                <span class="tag">API</span>
+                                <span class="tag">效能</span>
+                                <span class="tag">重要</span>
+                            </div>
                         </div>
                         <div class="chat-time">昨天</div>
                     </div>
                     <div class="chat-item">
-                        <div class="avatar">TG</div>
+                        <div class="avatar issue-avatar">2025-03-08</div>
                         <div class="chat-info">
-                            <div class="chat-name">專案小組</div>
-                            <div class="chat-preview">Alice: 我已經更新了文件...</div>
+                            <div class="chat-name">每日系統檢查</div>
+                            <div class="chat-preview summary-mode">例行系統檢查，發現網絡延遲異常...</div>
+                            <div class="chat-preview tags-mode" style="display: none;">
+                                <span class="tag">監控</span>
+                                <span class="tag">網絡</span>
+                                <span class="tag">例行</span>
+                            </div>
                         </div>
                         <div class="chat-time">3/8</div>
                     </div>
@@ -53,16 +72,21 @@
             <div class="col-6 chat-window">
                 <div class="chat-header">
                     <div class="d-flex align-items-center">
-                        <div class="avatar">JD</div>
+                        <div class="avatar issue-avatar">IS-1234</div>
                         <div class="chat-title">
-                            <h5>John Doe</h5>
-                            <div class="status-text">上線 · 最後上線時間 5分鐘前</div>
+                            <h5>記憶體洩漏問題</h5>
+                            <div class="issue-tags">
+                                <span class="tag">記憶體</span>
+                                <span class="tag">性能</span>
+                                <span class="tag">緊急</span>
+                            </div>
                         </div>
                     </div>
                     <div class="chat-actions">
-                        <button class="action-btn"><i class="bi bi-telephone"></i></button>
-                        <button class="action-btn"><i class="bi bi-camera-video"></i></button>
-                        <button class="action-btn"><i class="bi bi-three-dots"></i></button>
+                        <button class="action-btn" title="上傳檔案"><i class="bi bi-upload"></i></button>
+                        <button class="action-btn" title="贊同"><i class="bi bi-hand-thumbs-up"></i></button>
+                        <button class="action-btn" title="不贊同"><i class="bi bi-hand-thumbs-down"></i></button>
+                        <button class="action-btn" title="更多選項"><i class="bi bi-three-dots"></i></button>
                     </div>
                 </div>
                 <div class="messages-container">
@@ -70,32 +94,34 @@
                         <span>今天</span>
                     </div>
                     <div class="message received">
-                        <div class="message-avatar">JD</div>
+                        <div class="message-avatar">IS</div>
                         <div class="message-content">
-                            <div class="message-sender">John Doe</div>
-                            <div class="message-text">你好！我們可以討論一下專案進度嗎？</div>
+                            <div class="message-sender">系統</div>
+                            <div class="message-text">已建立新的問題報告：記憶體洩漏問題 (IS-1234)</div>
                             <div class="message-time">10:30</div>
-                        </div>
-                    </div>
-                    <div class="message sent">
-                        <div class="message-content">
-                            <div class="message-text">當然可以，我剛剛完成了一些功能實作</div>
-                            <div class="message-time">10:32</div>
                         </div>
                     </div>
                     <div class="message received">
                         <div class="message-avatar">JD</div>
                         <div class="message-content">
                             <div class="message-sender">John Doe</div>
-                            <div class="message-text">太好了！可以分享一下截圖嗎？</div>
-                            <div class="message-time">10:33</div>
+                            <div class="message-text">我們發現在長時間運行後，後端服務記憶體使用率持續增加，沒有恢復跡象。特別是處理大量資料的模組。</div>
+                            <div class="message-time">10:32</div>
                         </div>
                     </div>
                     <div class="message sent">
                         <div class="message-content">
-                            <div class="message-text">這是我實作的新功能畫面</div>
+                            <div class="message-text">我會檢查一下記憶體分析報告，請提供最近的伺服器日誌。</div>
+                            <div class="message-time">10:33</div>
+                        </div>
+                    </div>
+                    <div class="message received">
+                        <div class="message-avatar">JD</div>
+                        <div class="message-content">
+                            <div class="message-sender">John Doe</div>
+                            <div class="message-text">這是最近的記憶體分析圖表</div>
                             <div class="message-image">
-                                <img src="/api/placeholder/500/300" alt="功能截圖">
+                                <img src="/api/placeholder/500/300" alt="記憶體分析圖表">
                             </div>
                             <div class="message-time">10:40</div>
                         </div>
@@ -122,41 +148,47 @@
                 </div>
             </div>
 
-            <!-- Right sidebar - Files and Index -->
+            <!-- Right sidebar - Files and Trace -->
             <div class="col-3 files-sidebar">
-                <div class="sidebar-section files-section">
+                <div class="sidebar-section files-section" id="filesSection">
                     <div class="sidebar-header">
                         <h5>檔案列表</h5>
+                        <div class="source-selector">
+                            <button class="source-btn active" data-source="all">全部</button>
+                            <button class="source-btn" data-source="elg">ELG</button>
+                            <button class="source-btn" data-source="csv">CSV</button>
+                            <button class="source-btn" data-source="remote">遠端</button>
+                        </div>
                         <button class="upload-btn" id="fileUploadBtn"><i class="bi bi-upload"></i> 上傳檔案</button>
                         <input type="file" id="fileUploadInput" multiple style="display: none;">
                     </div>
                     <div class="files-list">
-                        <div class="file-item">
+                        <div class="file-item" data-source="elg">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="file1">
                                 <label class="form-check-label" for="file1">
-                                    <i class="bi bi-file-earmark-word"></i>
-                                    <span class="file-name">專案規劃書.docx</span>
+                                    <i class="bi bi-file-earmark-text"></i>
+                                    <span class="file-name">system_log.elg</span>
                                 </label>
                             </div>
                             <div class="file-info">3.2 MB · 昨天</div>
                         </div>
-                        <div class="file-item">
+                        <div class="file-item" data-source="csv">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="file2">
                                 <label class="form-check-label" for="file2">
-                                    <i class="bi bi-file-earmark-pdf"></i>
-                                    <span class="file-name">會議記錄.pdf</span>
+                                    <i class="bi bi-file-earmark-spreadsheet"></i>
+                                    <span class="file-name">memory_stats.csv</span>
                                 </label>
                             </div>
                             <div class="file-info">1.5 MB · 3/7</div>
                         </div>
-                        <div class="file-item">
+                        <div class="file-item" data-source="remote">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="file3">
                                 <label class="form-check-label" for="file3">
-                                    <i class="bi bi-file-earmark-image"></i>
-                                    <span class="file-name">設計圖.png</span>
+                                    <i class="bi bi-cloud"></i>
+                                    <span class="file-name">server_profile.bin</span>
                                 </label>
                             </div>
                             <div class="file-info">4.7 MB · 3/5</div>
@@ -168,36 +200,42 @@
                         <button class="action-btn"><i class="bi bi-trash"></i> 刪除</button>
                     </div>
                 </div>
-                <div class="sidebar-section index-section">
+                <div class="sidebar-section trace-section" id="traceSection">
                     <div class="sidebar-header">
-                        <h5>索引列表</h5>
+                        <h5>Trace 列表</h5>
+                        <div class="trace-type-selector">
+                            <button class="trace-type-btn active" data-type="all">全部</button>
+                            <button class="trace-type-btn" data-type="group">Group</button>
+                            <button class="trace-type-btn" data-type="custom">自定義</button>
+                            <button class="trace-type-btn" data-type="customGroup">自定群組</button>
+                        </div>
                     </div>
-                    <div class="index-list">
-                        <div class="index-item active">
+                    <div class="trace-list">
+                        <div class="trace-item" data-type="group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="index1" checked>
-                                <label class="form-check-label" for="index1">
-                                    <span class="index-name">主要索引</span>
+                                <input class="form-check-input" type="checkbox" id="trace1" checked>
+                                <label class="form-check-label" for="trace1">
+                                    <span class="trace-name">Memory Allocation</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="index-item">
+                        <div class="trace-item" data-type="custom">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="index2">
-                                <label class="form-check-label" for="index2">
-                                    <span class="index-name">專案資料</span>
+                                <input class="form-check-input" type="checkbox" id="trace2">
+                                <label class="form-check-label" for="trace2">
+                                    <span class="trace-name">Network Calls</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="index-item">
+                        <div class="trace-item" data-type="customGroup">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="index3">
-                                <label class="form-check-label" for="index3">
-                                    <span class="index-name">參考資料</span>
+                                <input class="form-check-input" type="checkbox" id="trace3">
+                                <label class="form-check-label" for="trace3">
+                                    <span class="trace-name">Error Handling</span>
                                 </label>
                             </div>
                         </div>
-                        <!-- More index items can be added here -->
+                        <!-- More trace items can be added here -->
                     </div>
                 </div>
             </div>
@@ -205,6 +243,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="teams-chat-js.js"></script>
+    <script src="websocket-manager.js"></script>
+    <script src="script-js.js"></script>
 </body>
 </html>
