@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams-like Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="teams-chat-css.css">
+</head>
+<body class="bg-dark text-light">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Left sidebar - Chat history -->
+            <div class="col-3 chat-history-sidebar">
+                <div class="sidebar-header">
+                    <h5>聊天記錄</h5>
+                    <div class="search-container">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="search-input" placeholder="搜尋">
+                    </div>
+                </div>
+                <div class="chat-list">
+                    <div class="chat-item active">
+                        <div class="avatar">JD</div>
+                        <div class="chat-info">
+                            <div class="chat-name">John Doe</div>
+                            <div class="chat-preview">最近的訊息預覽...</div>
+                        </div>
+                        <div class="chat-time">12:30</div>
+                    </div>
+                    <div class="chat-item">
+                        <div class="avatar">JS</div>
+                        <div class="chat-info">
+                            <div class="chat-name">Jane Smith</div>
+                            <div class="chat-preview">你好，我們下午有會議嗎？</div>
+                        </div>
+                        <div class="chat-time">昨天</div>
+                    </div>
+                    <div class="chat-item">
+                        <div class="avatar">TG</div>
+                        <div class="chat-info">
+                            <div class="chat-name">專案小組</div>
+                            <div class="chat-preview">Alice: 我已經更新了文件...</div>
+                        </div>
+                        <div class="chat-time">3/8</div>
+                    </div>
+                    <!-- More chat items can be added here -->
+                </div>
+            </div>
+
+            <!-- Middle - Chat window -->
+            <div class="col-6 chat-window">
+                <div class="chat-header">
+                    <div class="d-flex align-items-center">
+                        <div class="avatar">JD</div>
+                        <div class="chat-title">
+                            <h5>John Doe</h5>
+                            <div class="status-text">上線 · 最後上線時間 5分鐘前</div>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="action-btn"><i class="bi bi-telephone"></i></button>
+                        <button class="action-btn"><i class="bi bi-camera-video"></i></button>
+                        <button class="action-btn"><i class="bi bi-three-dots"></i></button>
+                    </div>
+                </div>
+                <div class="messages-container">
+                    <div class="date-divider">
+                        <span>今天</span>
+                    </div>
+                    <div class="message received">
+                        <div class="message-avatar">JD</div>
+                        <div class="message-content">
+                            <div class="message-sender">John Doe</div>
+                            <div class="message-text">你好！我們可以討論一下專案進度嗎？</div>
+                            <div class="message-time">10:30</div>
+                        </div>
+                    </div>
+                    <div class="message sent">
+                        <div class="message-content">
+                            <div class="message-text">當然可以，我剛剛完成了一些功能實作</div>
+                            <div class="message-time">10:32</div>
+                        </div>
+                    </div>
+                    <div class="message received">
+                        <div class="message-avatar">JD</div>
+                        <div class="message-content">
+                            <div class="message-sender">John Doe</div>
+                            <div class="message-text">太好了！可以分享一下截圖嗎？</div>
+                            <div class="message-time">10:33</div>
+                        </div>
+                    </div>
+                    <div class="message sent">
+                        <div class="message-content">
+                            <div class="message-text">這是我實作的新功能畫面</div>
+                            <div class="message-image">
+                                <img src="/api/placeholder/500/300" alt="功能截圖">
+                            </div>
+                            <div class="message-time">10:40</div>
+                        </div>
+                    </div>
+                    <div class="typing-indicator">
+                        <div class="avatar">JD</div>
+                        <div class="dots">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-input-container">
+                    <div class="message-toolbar">
+                        <button class="toolbar-btn" id="imageUploadBtn"><i class="bi bi-image"></i></button>
+                        <button class="toolbar-btn"><i class="bi bi-emoji-smile"></i></button>
+                        <button class="toolbar-btn"><i class="bi bi-paperclip"></i></button>
+                    </div>
+                    <div class="message-input-wrapper">
+                        <textarea class="message-input" placeholder="輸入訊息..."></textarea>
+                        <button class="send-btn"><i class="bi bi-send-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right sidebar - Files and Index -->
+            <div class="col-3 files-sidebar">
+                <div class="sidebar-section files-section">
+                    <div class="sidebar-header">
+                        <h5>檔案列表</h5>
+                        <button class="upload-btn" id="fileUploadBtn"><i class="bi bi-upload"></i> 上傳檔案</button>
+                        <input type="file" id="fileUploadInput" multiple style="display: none;">
+                    </div>
+                    <div class="files-list">
+                        <div class="file-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="file1">
+                                <label class="form-check-label" for="file1">
+                                    <i class="bi bi-file-earmark-word"></i>
+                                    <span class="file-name">專案規劃書.docx</span>
+                                </label>
+                            </div>
+                            <div class="file-info">3.2 MB · 昨天</div>
+                        </div>
+                        <div class="file-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="file2">
+                                <label class="form-check-label" for="file2">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span class="file-name">會議記錄.pdf</span>
+                                </label>
+                            </div>
+                            <div class="file-info">1.5 MB · 3/7</div>
+                        </div>
+                        <div class="file-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="file3">
+                                <label class="form-check-label" for="file3">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span class="file-name">設計圖.png</span>
+                                </label>
+                            </div>
+                            <div class="file-info">4.7 MB · 3/5</div>
+                        </div>
+                        <!-- More file items can be added here -->
+                    </div>
+                    <div class="files-actions">
+                        <button class="action-btn"><i class="bi bi-download"></i> 下載</button>
+                        <button class="action-btn"><i class="bi bi-trash"></i> 刪除</button>
+                    </div>
+                </div>
+                <div class="sidebar-section index-section">
+                    <div class="sidebar-header">
+                        <h5>索引列表</h5>
+                    </div>
+                    <div class="index-list">
+                        <div class="index-item active">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="index1" checked>
+                                <label class="form-check-label" for="index1">
+                                    <span class="index-name">主要索引</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="index-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="index2">
+                                <label class="form-check-label" for="index2">
+                                    <span class="index-name">專案資料</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="index-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="index3">
+                                <label class="form-check-label" for="index3">
+                                    <span class="index-name">參考資料</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- More index items can be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="teams-chat-js.js"></script>
+</body>
+</html>
